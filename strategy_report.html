@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Leveraged ETF Delta Strategy Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .metrics {
+            margin: 20px 0;
+        }
+        .equity-curve {
+            margin: 20px 0;
+            height: 200px;
+            background-color: #ecf0f1;
+        }
+        /* Add CSS for PDF export styling if using WeasyPrint */
+        @media print {
+            body { background-color: #ffffff; }
+            .equity-curve { height: auto; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Enhanced Leveraged ETF Delta Strategy Report</h1>
+    <p><strong>Period:</strong> 2023-01-01 to 2023-03-01</p>
+
+    <h2>Performance Metrics</h2>
+    <div class="metrics">
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>Value</th>
+            </tr>
+            
+            <tr>
+                <td>Total Return</td>
+                <td>0.00%</td>
+            </tr>
+            
+            <tr>
+                <td>Annualized Return</td>
+                <td>0.00%</td>
+            </tr>
+            
+            <tr>
+                <td>Max Drawdown</td>
+                <td>0.00%</td>
+            </tr>
+            
+            <tr>
+                <td>Sharpe Ratio</td>
+                <td>0.00</td>
+            </tr>
+            
+        </table>
+    </div>
+
+    <h2>Trade Log</h2>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Ticker</th>
+            <th>Action</th>
+            <th>Return</th>
+        </tr>
+        
+    </table>
+
+    <h2>Equity Curve</h2>
+    <div class="equity-curve">
+        <!-- Placeholder for equity curve visualization; replace with a chart library (e.g., Chart.js) or static data -->
+        <p>Equity Curve Data: 10 points</p>
+        <!-- Note: For PDF export, use a library like WeasyPrint to render charts. Add rendering logic in model.py -->
+    </div>
+
+    <p><em>Generated on 2025-05-07 19:33:01</em></p>
+</body>
+</html>

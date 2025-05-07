@@ -1,0 +1,166 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "strategy-monitoring",
+    "title": "ETF Delta Strategy Monitoring",
+    "tags": ["trading", "monitoring"],
+    "timezone": "browser",
+    "schemaVersion": 38,
+    "version": 1,
+    "refresh": "30s",
+    "panels": [
+      {
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "id": 1,
+        "title": "Portfolio Value",
+        "type": "timeseries",
+        "targets": [
+          {
+            "refId": "A",
+            "expr": "portfolio_value",
+            "format": "time_series",
+            "instant": false
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "Value",
+              "axisPlacement": "auto",
+              "drawStyle": "line",
+              "fillOpacity": 10,
+              "lineWidth": 1
+            },
+            "unit": "currencyUSD"
+          }
+        }
+      },
+      {
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "id": 2,
+        "title": "Total Trades Executed",
+        "type": "stat",
+        "targets": [
+          {
+            "refId": "A",
+            "expr": "trades_total",
+            "format": "time_series",
+            "instant": true
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "fixed",
+              "fixedColor": "blue"
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "red", "value": 100 }
+              ]
+            },
+            "unit": "none"
+          }
+        }
+      },
+      {
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 8
+        },
+        "id": 3,
+        "title": "Trade Execution Latency",
+        "type": "histogram",
+        "targets": [
+          {
+            "refId": "A",
+            "expr": "trade_latency_seconds_bucket",
+            "format": "time_series",
+            "instant": false
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "unit": "s"
+          }
+        }
+      },
+      {
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 8
+        },
+        "id": 4,
+        "title": "Data Fetch Duration",
+        "type": "histogram",
+        "targets": [
+          {
+            "refId": "A",
+            "expr": "data_fetch_duration_seconds_bucket",
+            "format": "time_series",
+            "instant": false
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "unit": "s"
+          }
+        }
+      },
+      {
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 16
+        },
+        "id": 5,
+        "title": "System Uptime",
+        "type": "stat",
+        "targets": [
+          {
+            "refId": "A",
+            "expr": "system_uptime_seconds",
+            "format": "time_series",
+            "instant": true
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "fixed",
+              "fixedColor": "green"
+            },
+            "unit": "s"
+          }
+        }
+      }
+    ]
+  },
+  "overwrite": true
+}

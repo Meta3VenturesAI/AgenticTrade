@@ -1,0 +1,60 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+      - "8001:8000"
+    volumes:
+      - ./cache:/app/cache
+    environment:
+      - PYTHONUNBUFFERED=1
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
+      - ALPHA_VANTAGE_API_KEY=${ALPHA_VANTAGE_API_KEY}
+      - REAL_TIME_OPTIONS_API_KEY=${REAL_TIME_OPTIONS_API_KEY}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_DATABASE_TYPE=postgres
+      - GF_DATABASE_HOST=postgres:5432
+      - GF_DATABASE_NAME=grafana
+      - GF_DATABASE_USER=grafana
+      - GF_DATABASE_PASSWORD=grafana_password
+      - GF_DATABASE_SSL_MODE=disable
+    depends_on:
+      - postgres
+    volumes:
+      - grafana-storage:/var/lib/grafana
+
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=grafana
+      - POSTGRES_PASSWORD=grafana_password
+      - POSTGRES_DB=grafana
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  grafana-storage:
+  postgres-data:

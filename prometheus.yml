@@ -1,0 +1,4 @@
+scrape_configs:
+  - job_name: 'etf_strategy'
+    static_configs:
+      - targets: ['app:8001']  # Update to 8001 if needed
